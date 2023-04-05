@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>MliybsToolKit</id>
+    <version>1.0.3</version>
+    <authors>Mliybs</authors>
+    <readme>README.md</readme>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net7.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="/media/mliybs/儿童邪典/GitHub/MliybsToolKit/bin/Debug/net7.0/MliybsToolKit.dll" target="lib/net7.0/MliybsToolKit.dll" />
+    <file src="/media/mliybs/儿童邪典/GitHub/MliybsToolKit/bin/Debug/net7.0/MliybsToolKit.xml" target="lib/net7.0/MliybsToolKit.xml" />
+    <file src="/media/mliybs/儿童邪典/GitHub/MliybsToolKit/README.md" target="./README.md" />
+  </files>
+</package>
