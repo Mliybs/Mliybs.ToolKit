@@ -11,7 +11,7 @@
     "/home/mliybs/.nuget/packages/": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "1.0.2",
     "restore": {
       "projectUniqueName": "/media/mliybs/儿童邪典/GitHub/MliybsToolKit/MliybsToolKit.csproj",
       "projectName": "MliybsToolKit",

@@ -1,9 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Library</OutputType>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>MliybsToolKit</PackageId>
+    <Version>1.0.2</Version>
+    <Authors>Mliybs</Authors>
+    <Company>Mlinetles</Company>
   </PropertyGroup>
+
+  <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="." />
+    </ItemGroup>
 
 </Project>
