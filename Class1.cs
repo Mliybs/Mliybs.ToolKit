@@ -87,11 +87,11 @@ namespace Mliybs
                     while (i <= tuple.end)
                         i++;
 
-                    if (i < 0 || i > tuple.end)
+                    if (index < 0 || index > i - tuple.begin)
                         throw new MliybsEnumeratorIndexOutOfRangeException();
 
                     else
-                        return i;
+                        return tuple.begin + index;
                 }
             }
 

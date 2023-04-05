@@ -5,15 +5,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>MliybsToolKit</PackageId>
-    <Version>1.0.3</Version>
+    <Version>1.0.5</Version>
     <Authors>Mliybs</Authors>
     <Company>Mlinetles</Company>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
         <None Include="README.md" Pack="true" PackagePath="." />
+        <None Include="LICENSE" Pack="true" PackagePath="." />
     </ItemGroup>
 
 </Project>
