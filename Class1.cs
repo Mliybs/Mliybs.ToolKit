@@ -9,7 +9,7 @@ namespace Mliybs
         /// <summary>
         /// MliybsToolKit的扩展方法类
         /// </summary>
-        public static class ExtensionMethods
+        public static class StaticExtensionMethods
         {
             /// <summary>
             /// 产生一个0到所给整数（非负数）的整数集合
