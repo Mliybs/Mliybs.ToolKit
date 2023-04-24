@@ -7,6 +7,67 @@ namespace Mliybs
     namespace MliybsToolKit
     {
         /// <summary>
+        /// 用于衔接Linq的整型类
+        /// </summary>
+        public class IntMliybsObject : IEnumerable<int>
+        {
+            int _object;
+
+            IntMliybsObject(int para) => _object = para;
+
+            /// <summary>
+            /// 实现GetEnumerator
+            /// </summary>
+            /// <returns></returns>
+            public IEnumerator<int> GetEnumerator() => _object.GetEnumerator();
+
+            IEnumerator IEnumerable.GetEnumerator() => _object.GetEnumerator();
+
+            /// <summary>
+            /// 实现隐式转换
+            /// </summary>
+            /// <param name="self"></param>
+            public static implicit operator IntMliybsObject(int self) => new(self);
+        }
+        
+        /// <summary>
+        /// 用于衔接Linq的元组类
+        /// </summary>
+        public class TupleMliybsObject : IEnumerable<int>
+        {
+            (int, int, int) _object;
+            
+            TupleMliybsObject((int, int) self)
+            {
+                var (begin, end) = self;
+
+                _object = (begin, end, 1);
+            }
+            
+            TupleMliybsObject((int, int, int) self) => _object = self;
+
+            /// <summary>
+            /// 实现GetEnumerator
+            /// </summary>
+            /// <returns></returns>
+            public IEnumerator<int> GetEnumerator() => _object.GetEnumerator();
+
+            IEnumerator IEnumerable.GetEnumerator() => _object.GetEnumerator();
+
+            /// <summary>
+            /// 实现隐式转换
+            /// </summary>
+            /// <param name="self"></param>
+            public static implicit operator TupleMliybsObject((int, int) self) => new(self);
+
+            /// <summary>
+            /// 实现隐式转换
+            /// </summary>
+            /// <param name="self"></param>
+            public static implicit operator TupleMliybsObject((int, int, int) self) => new(self);
+        }
+
+        /// <summary>
         /// MliybsToolKit的扩展方法类
         /// </summary>
         public static class StaticExtensionMethods
@@ -17,7 +78,7 @@ namespace Mliybs
             /// <param name="num"></param>
             /// <returns></returns>
             /// <exception cref="MliybsEnumeratorBeginIsBiggerException"></exception>
-            public static IEnumerator GetEnumerator(this int num)
+            public static IEnumerator<int> GetEnumerator(this int num)
             {
                 if (num <= 0)
                     throw new MliybsEnumeratorBeginIsBiggerException();
@@ -33,7 +94,7 @@ namespace Mliybs
             /// <param name="tuple"></param>
             /// <returns></returns>
             /// <exception cref="MliybsEnumeratorBeginIsBiggerException"></exception>
-            public static IEnumerator GetEnumerator(this (int begin, int end) tuple)
+            public static IEnumerator<int> GetEnumerator(this (int begin, int end) tuple)
             {
                 if (tuple.begin > tuple.end)
                     throw new MliybsEnumeratorBeginIsBiggerException();
@@ -104,7 +165,7 @@ namespace Mliybs
             /// <exception cref="MliybsEnumeratorStepIsZeroException"></exception>
             /// <exception cref="MliybsEnumeratorBeginIsBiggerException"></exception>
             /// <exception cref="MliybsEnumeratorEndIsBiggerException"></exception>
-            public static IEnumerator GetEnumerator(this (int begin, int end, int step) tuple)
+            public static IEnumerator<int> GetEnumerator(this (int begin, int end, int step) tuple)
             {
                 if (tuple.step == 0)
                     throw new MliybsEnumeratorStepIsZeroException();

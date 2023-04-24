@@ -8,10 +8,11 @@
     "net7.0": []
   },
   "packageFolders": {
-    "/home/mliybs/.nuget/packages/": {}
+    "/home/mliybs/.nuget/packages/": {},
+    "/home/mliybs/.local/share/godot/mono/GodotNuGetFallbackFolder": {}
   },
   "project": {
-    "version": "1.0.5",
+    "version": "1.0.6",
     "restore": {
       "projectUniqueName": "/media/mliybs/儿童邪典/GitHub/MliybsToolKit/MliybsToolKit.csproj",
       "projectName": "MliybsToolKit",
@@ -19,8 +20,12 @@
       "packagesPath": "/home/mliybs/.nuget/packages/",
       "outputPath": "/media/mliybs/儿童邪典/GitHub/MliybsToolKit/obj/",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "/home/mliybs/.local/share/godot/mono/GodotNuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "/home/mliybs/.nuget/NuGet/NuGet.Config"
+        "/home/mliybs/.nuget/NuGet/NuGet.Config",
+        "/home/mliybs/.nuget/NuGet/config/Godot.Offline.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
