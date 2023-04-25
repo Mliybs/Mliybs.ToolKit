@@ -9,11 +9,15 @@ namespace Mliybs
         /// <summary>
         /// 用于衔接Linq的整型类
         /// </summary>
-        public class IntMliybsObject : IEnumerable<int>
+        public class MliybsIntObject : IEnumerable<int>
         {
             int _object;
 
-            IntMliybsObject(int para) => _object = para;
+            /// <summary>
+            /// 传入可处理的整型变量并实例化
+            /// </summary>
+            /// <param name="para"></param>
+            public MliybsIntObject(int para) => _object = para;
 
             /// <summary>
             /// 实现GetEnumerator
@@ -27,24 +31,32 @@ namespace Mliybs
             /// 实现隐式转换
             /// </summary>
             /// <param name="self"></param>
-            public static implicit operator IntMliybsObject(int self) => new(self);
+            public static implicit operator MliybsIntObject(int self) => new(self);
         }
         
         /// <summary>
         /// 用于衔接Linq的元组类
         /// </summary>
-        public class TupleMliybsObject : IEnumerable<int>
+        public class MliybsTupleObject : IEnumerable<int>
         {
             (int, int, int) _object;
             
-            TupleMliybsObject((int, int) self)
+            /// <summary>
+            /// 传入可处理的整型变量并实例化
+            /// </summary>
+            /// <param name="self"></param>
+            public MliybsTupleObject((int, int) self)
             {
                 var (begin, end) = self;
 
                 _object = (begin, end, 1);
             }
             
-            TupleMliybsObject((int, int, int) self) => _object = self;
+            /// <summary>
+            /// 传入可处理的整型变量并实例化
+            /// </summary>
+            /// <param name="self"></param>
+            public MliybsTupleObject((int, int, int) self) => _object = self;
 
             /// <summary>
             /// 实现GetEnumerator
@@ -58,13 +70,13 @@ namespace Mliybs
             /// 实现隐式转换
             /// </summary>
             /// <param name="self"></param>
-            public static implicit operator TupleMliybsObject((int, int) self) => new(self);
+            public static implicit operator MliybsTupleObject((int, int) self) => new(self);
 
             /// <summary>
             /// 实现隐式转换
             /// </summary>
             /// <param name="self"></param>
-            public static implicit operator TupleMliybsObject((int, int, int) self) => new(self);
+            public static implicit operator MliybsTupleObject((int, int, int) self) => new(self);
         }
 
         /// <summary>
@@ -87,6 +99,13 @@ namespace Mliybs
                     for (int i = 0; i <= num; i++)
                         yield return i;
             }
+
+            /// <summary>
+            /// 返回一个可处理对象
+            /// </summary>
+            /// <param name="num"></param>
+            /// <returns></returns>
+            public static MliybsIntObject Transfer(this int num) => new MliybsIntObject(num);
 
             /// <summary>
             /// 产生一个所给整数1到所给整数2的整数集合 1必须小于2
@@ -155,6 +174,13 @@ namespace Mliybs
                         return tuple.begin + index;
                 }
             }
+
+            /// <summary>
+            /// 返回一个可处理对象
+            /// </summary>
+            /// <param name="tuple"></param>
+            /// <returns></returns>
+            public static MliybsTupleObject Transfer(this (int, int) tuple) => new MliybsTupleObject(tuple);
 
             /// <summary>
             /// <para>产生一个整数集合 三个整数分别为起始值 结束值与步长</para>
@@ -302,6 +328,13 @@ namespace Mliybs
                         return tuple.begin += tuple.step * index;
                 }
             }
+
+            /// <summary>
+            /// 返回一个可处理对象
+            /// </summary>
+            /// <param name="tuple"></param>
+            /// <returns></returns>
+            public static MliybsTupleObject Transfer(this (int, int, int) tuple) => new MliybsTupleObject(tuple);
         }
 
         internal class MliybsEnumeratorBeginIsBiggerException : ApplicationException
