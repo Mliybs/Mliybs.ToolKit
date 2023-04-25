@@ -16,8 +16,8 @@ namespace Mliybs
             /// <summary>
             /// 传入可处理的整型变量并实例化
             /// </summary>
-            /// <param name="para"></param>
-            public MliybsIntObject(int para) => _object = para;
+            /// <param name="self"></param>
+            public MliybsIntObject(int self) => _object = self;
 
             /// <summary>
             /// 实现GetEnumerator
@@ -39,10 +39,10 @@ namespace Mliybs
         /// </summary>
         public class MliybsTupleObject : IEnumerable<int>
         {
-            (int, int, int) _object;
+            (int begin, int end, int step) _object;
             
             /// <summary>
-            /// 传入可处理的整型变量并实例化
+            /// 传入可处理的元组对象并实例化
             /// </summary>
             /// <param name="self"></param>
             public MliybsTupleObject((int, int) self)
@@ -53,7 +53,7 @@ namespace Mliybs
             }
             
             /// <summary>
-            /// 传入可处理的整型变量并实例化
+            /// 传入可处理的元组对象并实例化
             /// </summary>
             /// <param name="self"></param>
             public MliybsTupleObject((int, int, int) self) => _object = self;
@@ -65,6 +65,63 @@ namespace Mliybs
             public IEnumerator<int> GetEnumerator() => _object.GetEnumerator();
 
             IEnumerator IEnumerable.GetEnumerator() => _object.GetEnumerator();
+
+            /// <summary>
+            /// 自定义索引器
+            /// </summary>
+            /// <param name="index"></param>
+            /// <returns></returns>
+            public int this[Index index]
+            {
+                get
+                {
+                    if (index.IsFromEnd)
+                        return _object.Get(_object.Count() - index.Value - 1);
+
+                    else
+                        return _object.Get(index.Value);
+                }
+            }
+
+            /// <summary>
+            /// 自定义索引器 此处range的用法用.NET常规用法不同 索引末尾值是包含在返回集合里的
+            /// </summary>
+            /// <param name="range"></param>
+            /// <returns></returns>
+            public IEnumerable<int> this[Range range]
+            {
+                get
+                {
+                    if (range.Start.Value < 0 || range.End.Value < 0)
+                        throw new MliybsEnumeratorIndexOutOfRangeException();
+
+                    var start = range.Start.IsFromEnd ? _object.Count() - range.Start.Value - 1 : range.Start.Value;
+                    
+                    var end = range.End.IsFromEnd ? _object.Count() - range.End.Value - 1 : range.End.Value;
+
+                    if (start > end)
+                        throw new MliybsEnumeratorBeginIsBiggerException();
+
+                    for (int i = start; i <= end; i++)
+                        yield return _object.Get(i);
+                }
+            }
+
+            /// <summary>
+            /// 自定义Count属性
+            /// </summary>
+            /// <returns></returns>
+            public int Count
+            {
+                get
+                {
+                    if (_object.step == 1)
+                        return (_object.begin, _object.end).Count();
+
+                    else
+                        return _object.Count();
+                }
+            }
 
             /// <summary>
             /// 实现隐式转换
@@ -84,6 +141,26 @@ namespace Mliybs
         /// </summary>
         public static class StaticExtensionMethods
         {
+            /// <summary>
+            /// 遍历集合并使用Console.Write方法输出
+            /// </summary>
+            /// <param name="self"></param>
+            public static void Print(this IEnumerable self)
+            {
+                foreach (var item in self)
+                    Console.Write(item);
+            }
+
+            /// <summary>
+            /// 遍历集合并使用Console.WriteLine方法输出
+            /// </summary>
+            /// <param name="self"></param>
+            public static void PrintLine(this IEnumerable self)
+            {
+                foreach (var item in self)
+                    Console.WriteLine(item);
+            }
+
             /// <summary>
             /// 产生一个0到所给整数（非负数）的整数集合
             /// </summary>
@@ -167,7 +244,7 @@ namespace Mliybs
                     while (i <= tuple.end)
                         i++;
 
-                    if (index < 0 || index > i - tuple.begin)
+                    if (index < 0 || index >= i - tuple.begin)
                         throw new MliybsEnumeratorIndexOutOfRangeException();
 
                     else
@@ -233,16 +310,10 @@ namespace Mliybs
                     if (tuple.begin > tuple.end)
                         throw new MliybsEnumeratorBeginIsBiggerException();
 
-                    int i = tuple.begin;
-
                     int length = 0;
 
-                    while (i <= tuple.end)
-                    {
-                        i += tuple.step;
-
+                    for (int i = tuple.begin; i <= tuple.end; i += tuple.step)
                         length++;
-                    }
 
                     return length;
                 }
@@ -252,16 +323,10 @@ namespace Mliybs
                     if (tuple.begin < tuple.step)
                         throw new MliybsEnumeratorEndIsBiggerException();
 
-                    int i = tuple.begin;
-
                     int length = 0;
 
-                    while (i >= tuple.end)
-                    {
-                        i += tuple.step;
-
+                    for (int i = tuple.begin; i >= tuple.end; i += tuple.step)
                         length++;
-                    }
 
                     return length;
                 }
@@ -287,18 +352,12 @@ namespace Mliybs
                     if (tuple.begin > tuple.end)
                         throw new MliybsEnumeratorBeginIsBiggerException();
 
-                    int i = tuple.begin;
-
                     int length = 0;
 
-                    while (i <= tuple.end)
-                    {
-                        i += tuple.step;
-
+                    for (int i = tuple.begin; i <= tuple.end; i += tuple.step)
                         length++;
-                    }
 
-                    if (index < 0 || index > length)
+                    if (index < 0 || index >= length)
                         throw new MliybsEnumeratorIndexOutOfRangeException();
 
                     else
@@ -310,18 +369,12 @@ namespace Mliybs
                     if (tuple.begin < tuple.step)
                         throw new MliybsEnumeratorEndIsBiggerException();
 
-                    int i = tuple.begin;
-
                     int length = 0;
 
-                    while (i >= tuple.end)
-                    {
-                        i += tuple.step;
-
+                    for (int i = tuple.begin; i >= tuple.end; i += tuple.step)
                         length++;
-                    }
 
-                    if (index < 0 || index > length)
+                    if (index < 0 || index >= length)
                         throw new MliybsEnumeratorIndexOutOfRangeException();
 
                     else
