@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <PackageId>MliybsToolKit</PackageId>
-    <Version>1.0.7</Version>
+    <Version>1.0.8</Version>
     <Authors>Mliybs</Authors>
     <Company>Mlinetles</Company>
     <PackageReadmeFile>README.md</PackageReadmeFile>
