@@ -7,14 +7,16 @@
     <Version>1.0.9</Version>
     <Authors>Mliybs</Authors>
     <Company>Mlinetles</Company>
+    <Description>Mliybs的工具包</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-        <None Include="README.md" Pack="true" PackagePath="." />
-        <None Include="LICENSE" Pack="true" PackagePath="." />
-    </ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="." />
+    <None Include="LICENSE" Pack="true" PackagePath="." />
+    <None Include="icon.png" Pack="true" PackagePath="." />
+  </ItemGroup>
 
 </Project>
