@@ -29,6 +29,20 @@ namespace Mliybs
             IEnumerator IEnumerable.GetEnumerator() => _object.GetEnumerator();
 
             /// <summary>
+            /// 将整型集合中的所有元素串联成一个字符串
+            /// </summary>
+            /// <returns></returns>
+            public override string ToString()
+            {
+                var builder = new System.Text.StringBuilder();
+
+                foreach (var item in _object)
+                    builder.Append(item);
+
+                return builder.ToString();
+            }
+
+            /// <summary>
             /// 实现隐式转换
             /// </summary>
             /// <param name="self"></param>
@@ -66,6 +80,20 @@ namespace Mliybs
             public IEnumerator<int> GetEnumerator() => _object.GetEnumerator();
 
             IEnumerator IEnumerable.GetEnumerator() => _object.GetEnumerator();
+
+            /// <summary>
+            /// 将元组集合中的所有元素串联成一个字符串
+            /// </summary>
+            /// <returns></returns>
+            public override string ToString()
+            {
+                var builder = new System.Text.StringBuilder();
+
+                foreach (var item in _object)
+                    builder.Append(item);
+
+                return builder.ToString();
+            }
 
             /// <summary>
             /// 自定义索引器
@@ -143,23 +171,23 @@ namespace Mliybs
         public static class StaticExtensionMethods
         {
             /// <summary>
-            /// 遍历集合并使用Console.Write方法输出
+            /// 遍历集合并使用Console.Write方法输出类型和内容
             /// </summary>
             /// <param name="self"></param>
             public static void Print(this IEnumerable self)
             {
                 foreach (var item in self)
-                    Console.Write(item);
+                    Console.Write(item.GetType().ToString() + "：" + item.ToString());
             }
 
             /// <summary>
-            /// 遍历集合并使用Console.WriteLine方法输出
+            /// 遍历集合并使用Console.WriteLine方法输出类型和内容
             /// </summary>
             /// <param name="self"></param>
             public static void PrintLine(this IEnumerable self)
             {
                 foreach (var item in self)
-                    Console.WriteLine(item);
+                    Console.WriteLine(item.GetType().ToString() + "：" + item.ToString());
             }
 
             /// <summary>

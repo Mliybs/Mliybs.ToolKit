@@ -18,6 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyProductAttribute("MliybsToolKit")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MliybsToolKit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.9.0")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/Mliybs/MliybsToolKit")]
 
 // 由 MSBuild WriteCodeFragment 类生成。
 

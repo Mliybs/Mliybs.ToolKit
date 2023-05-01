@@ -8,9 +8,11 @@
     <Authors>Mliybs</Authors>
     <Company>Mlinetles</Company>
     <Description>Mliybs的工具包</Description>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <RepositoryUrl>https://github.com/Mliybs/MliybsToolKit</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

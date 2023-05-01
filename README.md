@@ -55,10 +55,15 @@ namespace Namespace
 
 _这个我觉得还有点用 比那个0到n都要靠专门方法来计算的强多了_
 
+## MliybsIntObject和MliybsTupleObject
+
 ### Count属性和this[]索引器
 采用特殊的方法对Count和Get方法进行了封装（nmd不是单纯加壳子 很累的）
 
 this[]索引器支持反向索引（如^0）和范围索引（如0..^0） 同常规Range不同 自定义类型在使用索引器时结尾索引的值会包含在集合中不会排除 需注意
+
+### ToString
+现在使用MliybsIntObject和MliybsTupleObject的ToString方法会自动把其中的元素全部串联成一整个字符串了
 
 ## IEnumerable
 ### Print和PrintLine
@@ -103,3 +108,6 @@ _（v1.0.6我愿称之为史上最强 兼容了LINQ之后可操作能力指数�
 引入了更新公告（不然我自己都不知道自己写了什么）
 
 加入了Print和PrintLine方法 加入了Count属性和索引器 修复了命名BUG 修复了元组索引值可以比最大值大一的BUG（忘了倒数第一是个数减一了 我是笨比） 修复了一系列BUG
+
+## v1.0.9
+更新了Print和PrintLine方法 现在输出元素的时候前面会加上“元素类型：”了 覆写了ToString方法 修复了BUG
