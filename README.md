@@ -63,7 +63,7 @@ _这个我觉得还有点用 比那个0到n都要靠专门方法来计算的强�
 this[]索引器支持反向索引（如^0）和范围索引（如0..^0） 同常规Range不同 自定义类型在使用索引器时结尾索引的值会包含在集合中不会排除 需注意
 
 ### ToString
-现在使用MliybsIntObject和MliybsTupleObject的ToString方法会自动把其中的元素全部串联成一整个字符串了
+现在使用MliybsIntObject和MliybsTupleObject的ToString方法会自动把其中的元素全部串联成一整个字符串
 
 ## IEnumerable
 ### Print和PrintLine
@@ -72,7 +72,7 @@ this[]索引器支持反向索引（如^0）和范围索引（如0..^0） 同常
 _（虽然是套壳子 但是我是不会道歉的）_
 
 ## LINQ兼容
-上述数据类型在v1.0.6兼容了LINQ（v1.0.8修复BUG 建议使用v1.0.8以上版本） 由于数据转换受限 _（想要兼容LINQ必须实现IEnumerable&lt;T&gt;接口或者实现到IEnumerable&lt;T&gt;的隐式或显式转换 前者受限于int和ValueTuple无法实现后者受限于扩展方法无法实现）_ 所以采用了自定义类MliybsIntObject和MliybsTupleObject
+上述数据类型在v1.0.6兼容了LINQ（v1.0.8修复BUG 建议使用v1.0.8以上版本） 由于数据转换受限 _（想要兼容LINQ必须实现IEnumerable&lt;T&gt;接口 受限于int和ValueTuple无法实现）_ 所以采用了自定义类MliybsIntObject和MliybsTupleObject
 
 如果想要使用LINQ 必须使用显式转换 _（但是定义的是隐式转换 方便后续版本开发）_ 或Transfer方法 之后才能使用LINQ
 
@@ -103,6 +103,9 @@ namespace Namespace
 
 _（v1.0.6我愿称之为史上最强 兼容了LINQ之后可操作能力指数级增长 这波薄纱了）_
 
+## GetAwaiter()
+v1.1.0扩展了GetAwaiter方法 可以使用await 秒数等待指定的秒数
+
 # 更新公告
 ## v1.0.8
 引入了更新公告（不然我自己都不知道自己写了什么）
@@ -111,3 +114,6 @@ _（v1.0.6我愿称之为史上最强 兼容了LINQ之后可操作能力指数�
 
 ## v1.0.9
 更新了Print和PrintLine方法 现在输出元素的时候前面会加上“元素类型：”了 覆写了ToString方法 修复了BUG
+
+## v1.1.0
+更新了GetAwaiter方法

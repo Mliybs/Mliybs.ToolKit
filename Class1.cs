@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace Mliybs
 {
@@ -417,6 +419,55 @@ namespace Mliybs
             /// <param name="tuple"></param>
             /// <returns></returns>
             public static MliybsTupleObject Transfer(this (int, int, int) tuple) => new MliybsTupleObject(tuple);
+
+            /// <summary>
+            /// 等待指定的秒数
+            /// </summary>
+            /// <param name="seconds"></param>
+            /// <returns></returns>
+            public static TaskAwaiter GetAwaiter(this double seconds) => Task.Delay(TimeSpan.FromSeconds(seconds)).GetAwaiter();
+
+            /// <summary>
+            /// 等待指定的秒数
+            /// </summary>
+            /// <param name="seconds"></param>
+            /// <returns></returns>
+            public static TaskAwaiter GetAwaiter(this int seconds) => ((double)seconds).GetAwaiter();
+
+            /// <summary>
+            /// 等待指定的秒数
+            /// </summary>
+            /// <param name="seconds"></param>
+            /// <returns></returns>
+            public static TaskAwaiter GetAwaiter(this uint seconds) => ((double)seconds).GetAwaiter();
+
+            /// <summary>
+            /// 等待指定的秒数
+            /// </summary>
+            /// <param name="seconds"></param>
+            /// <returns></returns>
+            public static TaskAwaiter GetAwaiter(this long seconds) => ((double)seconds).GetAwaiter();
+
+            /// <summary>
+            /// 等待指定的秒数
+            /// </summary>
+            /// <param name="seconds"></param>
+            /// <returns></returns>
+            public static TaskAwaiter GetAwaiter(this ulong seconds) => ((double)seconds).GetAwaiter();
+
+            /// <summary>
+            /// 等待指定的秒数
+            /// </summary>
+            /// <param name="seconds"></param>
+            /// <returns></returns>
+            public static TaskAwaiter GetAwaiter(this float seconds) => ((double)seconds).GetAwaiter();
+
+            /// <summary>
+            /// 等待指定的秒数
+            /// </summary>
+            /// <param name="seconds"></param>
+            /// <returns></returns>
+            public static TaskAwaiter GetAwaiter(this decimal seconds) => ((double)seconds).GetAwaiter();
         }
 
         internal class MliybsEnumeratorBeginIsBiggerException : ApplicationException
